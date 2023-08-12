@@ -1,0 +1,200 @@
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Silkscreen', cursive;
+}
+
+:root{
+    --bg-color-light: #eaeaea;
+    --bg-color-dark: #1e1e1e;
+    
+    --text-light:#000000;
+    --text-dark: #ffffff;
+
+    --border-light: #000000;
+    --border-dark: #FFFFFF;
+
+    --box-shadow-out-light: rgba(255, 0, 0, 0.6);
+    --box-shadow-in-light: rgba(0, 0, 255, 0.6);
+    --box-shadow-out-dark: rgba(128, 255, 0, 0.4);
+    --box-shadow-in-dark: #ffffff;
+
+    --bg-button-light: #0000ff;
+    --bg-button-dark: #008000;
+}
+
+main{
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 7vh;
+    background-color: var(--bg-color-light);
+    color: var(--text-light);
+}
+
+.wrapper-mode{
+    display: flex;
+    justify-content: flex-end;
+    top: 5px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.mode-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--bg-button-light);
+    padding: 5px 10px;
+    color: var(--text-dark);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
+}
+
+.mode-btn:hover{
+    background-color: var(--bg-color-light);
+    color: var(--text-light);
+}
+
+.toggle-mode{
+    background-color: inherit;
+    border: inherit;
+    color: inherit;
+}
+
+.darkmode{
+    background-color: var(--bg-color-dark);
+    color: var(--text-dark);
+}
+
+.darkmode .game, .darkmode button, .darkmode .score, .darkmode .controls, .darkmode .mode-btn{
+    box-shadow: 0 0 10px var(--box-shadow-in-dark), 0 0 20px var(--box-shadow-out-dark);
+}
+
+.darkmode button, .darkmode button:hover, .darkmode .mode-btn{
+    background-color: var(--bg-button-dark);
+}
+
+.darkmode .score, .darkmode .controls{
+    border: 1px solid var(--border-dark);
+}
+
+.darkmode .mode-btn:hover{
+    background-color: var(--bg-color-dark);
+    color: var(--text-dark);
+}
+
+h1{
+    font-size: 3rem;
+    text-shadow: 2px 0 0 blue, -2px 0 0 red;
+    position: relative;
+    z-index: 9;
+    margin-bottom: 30px;
+}
+
+h1::after{
+    content: '';
+    width: 100%;
+    height: 100px;
+    bottom: -40px;
+    left: 0;
+    position: absolute;
+    background-image: url(../img/snake.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter:opacity(.4);
+    z-index: -1; 
+}
+
+.game{
+    background-color: black;
+    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
+    display: none;
+}
+
+button{
+    margin-top: 10px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
+    background-color: var(--bg-button-light);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: var(--bg-button-light);
+    filter:grayscale(.5);
+}
+
+.score{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-light);
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
+}
+
+.score p:nth-child(1){
+    font-size: 1.5rem;
+}
+
+.score p:nth-child(1) span{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.controls{
+    width: 400px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
+    padding: 20px 40px;
+}
+
+.controls h2{
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.controls > p{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.controls > p > span{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    font-size: 1.5rem;
+}
+
+.up{
+    background-image: url(../img/up.png);
+}
+.left{
+    background-image: url(../img/left.png);
+}
+.down{
+    background-image: url(../img/down.png);
+}
+.right{
+    background-image: url(../img/right.png);
+}

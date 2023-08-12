@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="./assets/js/main.js" defer></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <main>
+        <div class="wrapper-mode">
+            <div class="mode-btn">
+                <span class="material-symbols-outlined icon-mode">dark_mode</span>
+                <input type="button" class="toggle-mode" value="dark"/>
+            </div>
+        </div>
+        <h1>Snake Game</h1>
+        <canvas class="game" width="400" height="400"></canvas>
+        <button class="btn">Start</button>
+        <div class="controls">
+            <h2>Controles:</h2>
+            <p><span class="up"></span>Cima</p>
+            <p><span class="right"></span>Direita</p>
+            <p><span class="down"></span>Baixo</p>
+            <p><span class="left"></span>Esquerda</p>
+        </div>
+        <div class="score">
+            <p>Maior Pontuação: <span class="max-score"></span></p>
+            <p>Ultima Pontuação: <span class="last-score"></span></p>
+        </div>
+    </main>
+</body>
+</html>
