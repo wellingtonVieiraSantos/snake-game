@@ -55,7 +55,7 @@ toggleMode.addEventListener('click',()=>{
     icon.textContent == 'dark_mode' ? icon.textContent = 'light_mode' : icon.textContent = 'dark_mode'
     localStorage.setItem('color-mode', nameMode.value)
 })
-console.log(window.innerWidth);
+
 //creating the start event
 btn.addEventListener('click',() => {
     if(window.innerWidth < 767
@@ -174,6 +174,7 @@ document.addEventListener('keydown', (event)=>{
     else return
 })
 
+//events for responsive arrows
 ArrowUp.addEventListener('click', ()=>{
     buttonDirection('bottom', 'top')
 })
