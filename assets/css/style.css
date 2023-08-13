@@ -211,6 +211,7 @@ button:hover{
 
 .virtual-control-container{
     display: none;
+    
 }
 
 @media only screen and (max-width: 767px) and (orientation: portrait) {

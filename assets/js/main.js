@@ -58,7 +58,9 @@ toggleMode.addEventListener('click',()=>{
 console.log(window.innerWidth);
 //creating the start event
 btn.addEventListener('click',() => {
-    if(window.innerWidth < 767){
+    if(window.innerWidth < 767
+        || document.documentElement.clientWidth < 767
+        || document.body.clientWidth < 767){
         game.style.marginTop = '.5rem'
         scoreDiv.style.display = 'none'
         title.style.display = 'none'
@@ -195,7 +197,9 @@ const gameOver = () => {
     bgSound.pause()
     game.style.display = 'none'
 
-    if(window.innerWidth < 767){
+    if(window.innerWidth < 767
+        || document.documentElement.clientWidth < 767
+        || document.body.clientWidth < 767){
         scoreDiv.style.display = 'block'
         title.style.display = 'block'
         toggleMode.parentNode.style.display = 'flex'
