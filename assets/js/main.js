@@ -8,6 +8,15 @@ const main = document.querySelector('main')
 const lastScore = document.querySelector('.last-score')
 const maxScore = document.querySelector('.max-score')
 const game = document.querySelector('.game')
+const scoreDiv = document.querySelector('.score')
+const title = document.querySelector('h1')
+const virtualControl = document.querySelector('.virtual-control-container')
+
+//arrows for responsive events
+const ArrowUp = document.querySelector('.arrow-up')
+const ArrowRight = document.querySelector('.arrow-right')
+const ArrowDown = document.querySelector('.arrow-down')
+const ArrowLeft = document.querySelector('.arrow-left')
 
 //creating context for canvas
 const ctx = game.getContext('2d')
@@ -46,9 +55,16 @@ toggleMode.addEventListener('click',()=>{
     icon.textContent == 'dark_mode' ? icon.textContent = 'light_mode' : icon.textContent = 'dark_mode'
     localStorage.setItem('color-mode', nameMode.value)
 })
-
+console.log(window.innerWidth);
 //creating the start event
 btn.addEventListener('click',() => {
+    if(window.innerWidth < 767){
+        game.style.marginTop = '.5rem'
+        scoreDiv.style.display = 'none'
+        title.style.display = 'none'
+        toggleMode.parentNode.style.display = 'none'
+        virtualControl.style.display = 'grid'
+    }
     game.style.display = 'block'
     btn.style.display = 'none'
     controls.style.display = 'none'
@@ -156,10 +172,35 @@ document.addEventListener('keydown', (event)=>{
     else return
 })
 
+ArrowUp.addEventListener('click', ()=>{
+    buttonDirection('bottom', 'top')
+})
+ArrowRight.addEventListener('click', ()=>{
+    buttonDirection('left', 'right')
+})
+ArrowDown.addEventListener('click', ()=>{
+    buttonDirection('up', 'bottom')
+})
+ArrowLeft.addEventListener('click', ()=>{
+    buttonDirection('right', 'left')
+})
+
+const buttonDirection = (oppositeWay, way) =>{
+    if(direction == oppositeWay) return
+    else direction = way
+}
+
 const gameOver = () => {
     clearInterval(updateGame)
     bgSound.pause()
     game.style.display = 'none'
+
+    if(window.innerWidth < 767){
+        scoreDiv.style.display = 'block'
+        title.style.display = 'block'
+        toggleMode.parentNode.style.display = 'flex'
+        virtualControl.style.display = 'none'
+    }
 
     localStorage.setItem('last-score', score)
     if(+localStorage.getItem('max-score') < score){
@@ -170,6 +211,7 @@ const gameOver = () => {
 
     const restart = document.createElement('button')
     restart.innerText = 'Restart'
+    restart.classList.add('restart')
     restart.addEventListener('click', ()=>{
         location.reload()
     })

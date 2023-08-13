@@ -35,6 +35,7 @@ main{
     gap: 7vh;
     background-color: var(--bg-color-light);
     color: var(--text-light);
+    user-select: none;
 }
 
 .wrapper-mode{
@@ -92,19 +93,27 @@ main{
     color: var(--text-dark);
 }
 
+.darkmode .virtual-control-container > div{
+    background-color: var(--bg-color-dark);
+}
+
+.darkmode .virtual-control-container > .arrow{
+    border: 5px solid var(--border-dark);
+}
+
 h1{
     font-size: 3rem;
     text-shadow: 2px 0 0 blue, -2px 0 0 red;
     position: relative;
     z-index: 9;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 h1::after{
     content: '';
     width: 100%;
-    height: 100px;
-    bottom: -40px;
+    height: 6.25rem;
+    bottom: -2.5rem;
     left: 0;
     position: absolute;
     background-image: url(../img/snake.png);
@@ -115,14 +124,15 @@ h1::after{
 }
 
 .game{
+    max-width: 25rem;
     background-color: black;
     box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
     display: none;
 }
 
 button{
-    margin-top: 10px;
-    padding: 20px 40px;
+    margin-top: 0.625rem;
+    padding: 1.25rem 2.5rem;
     font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 1px;
@@ -140,13 +150,13 @@ button:hover{
 }
 
 .score{
-    width: 400px;
+    width: 25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid var(--border-light);
-    gap: 20px;
-    padding: 20px;
+    gap: 1.25rem;
+    padding: 1.25rem;
     box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
 }
 
@@ -160,27 +170,27 @@ button:hover{
 }
 
 .controls{
-    width: 400px;
+    width: 25rem;
     border: 1px solid var(--border-light);
-    box-shadow: 0 0 10px var(--box-shadow-in-light), 0 0 20px var(--box-shadow-out-light);
-    padding: 20px 40px;
+    box-shadow: 0 0 2px var(--box-shadow-in-light), 0 0 4px var(--box-shadow-out-light);
+    padding: 1.25rem 2.5rem;
 }
 
 .controls h2{
     font-size: 1.3rem;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .controls > p{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .controls > p > span{
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     display: inline-block;
     background-size: cover;
     font-size: 1.5rem;
@@ -197,4 +207,81 @@ button:hover{
 }
 .right{
     background-image: url(../img/right.png);
+}
+
+.virtual-control-container{
+    display: none;
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    main{
+        max-width: 100vw;
+        gap: 1.25rem;
+    }
+    h1{
+        max-width: inherit;
+        font-size: 2rem;
+    }
+    h1::after{
+        max-width: inherit;
+    }
+
+    button{
+        margin-top: 0;
+        padding: 0.625rem 1.25rem;
+    }
+    .wrapper-mode{
+        max-width: inherit;
+        padding-right: 0;
+    }
+    .game{
+        max-width: 97vw;
+    }
+    .controls{
+        max-width: inherit;
+        padding: 0.625rem 1.25rem;
+    }
+    .controls h2{
+        font-size: 1.1rem;
+        margin-bottom: 0.625rem;
+    }
+    .score{
+        max-width: inherit;
+        gap: 0.75rem;
+    }
+    .score p:nth-child(1){
+        font-size: 1.1rem;
+    }    
+    .score p:nth-child(1) span{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .score p:nth-child(2){
+        font-size: .9rem;
+    }
+    .restart{
+        margin-top: 2.5rem;
+    }
+
+    .virtual-control-container{
+        width: 12.5rem;
+        height: 12.5rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2px;
+        display: none;
+    }
+    .virtual-control-container > div{
+        background-color: var(--bg-color-light);
+    }
+    
+    .virtual-control-container > .arrow{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 5px solid var(--border-light);
+        border-radius: 50%;
+        cursor: pointer;
+    }
 }
