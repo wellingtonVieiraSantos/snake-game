@@ -10,13 +10,6 @@ const maxScore = document.querySelector('.max-score')
 const game = document.querySelector('.game')
 const scoreDiv = document.querySelector('.score')
 const title = document.querySelector('h1')
-const virtualControl = document.querySelector('.virtual-control-container')
-
-//arrows for responsive events
-const ArrowUp = document.querySelector('.arrow-up')
-const ArrowRight = document.querySelector('.arrow-right')
-const ArrowDown = document.querySelector('.arrow-down')
-const ArrowLeft = document.querySelector('.arrow-left')
 
 //creating context for canvas
 const ctx = game.getContext('2d')
@@ -34,6 +27,8 @@ let direction = 'right'
 let score = 0
 let updateGame, bgSound
 
+//creating initial touch events
+let touchStartX, touchStartY, touchEndX, touchEndY
 
 //setting color mode in localStorage
 const colorMode = (() =>{
@@ -58,15 +53,6 @@ toggleMode.addEventListener('click',()=>{
 
 //creating the start event
 btn.addEventListener('click',() => {
-    if(window.innerWidth < 767
-        || document.documentElement.clientWidth < 767
-        || document.body.clientWidth < 767){
-        game.style.marginTop = '.5rem'
-        scoreDiv.style.display = 'none'
-        title.style.display = 'none'
-        toggleMode.parentNode.style.display = 'none'
-        virtualControl.style.display = 'grid'
-    }
     game.style.display = 'block'
     btn.style.display = 'none'
     controls.style.display = 'none'
@@ -174,38 +160,43 @@ document.addEventListener('keydown', (event)=>{
     else return
 })
 
-//events for responsive arrows
-ArrowUp.addEventListener('click', ()=>{
-    buttonDirection('bottom', 'top')
-})
-ArrowRight.addEventListener('click', ()=>{
-    buttonDirection('left', 'right')
-})
-ArrowDown.addEventListener('click', ()=>{
-    buttonDirection('up', 'bottom')
-})
-ArrowLeft.addEventListener('click', ()=>{
-    buttonDirection('right', 'left')
-})
 
+//events touch for mobile devices
 const buttonDirection = (oppositeWay, way) =>{
     if(direction == oppositeWay) return
     else direction = way
 }
 
+game.addEventListener('touchstart', (e) =>{
+    touchStartX = e.touches[0].clientX
+    touchStartY = e.touches[0].clientY
+})
+
+game.addEventListener('touchmove', (e)=>{
+    if(!touchStartX || !touchStartY) return
+
+    touchEndX = e.touches[0].clientX
+    touchEndY = e.touches[0].clientY
+
+    const deltaX = touchEndX - touchStartX
+    const deltaY = touchEndY - touchStartY
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if(deltaX > 0) buttonDirection('left', 'right')
+        else buttonDirection('right', 'left')
+    }else{
+        if(deltaY > 0) buttonDirection('top', 'bottom')
+        else buttonDirection('bottom', 'top')
+    }
+
+    touchStartX = null
+    touchStartY = null
+})
+
 const gameOver = () => {
     clearInterval(updateGame)
     bgSound.pause()
     game.style.display = 'none'
-
-    if(window.innerWidth < 767
-        || document.documentElement.clientWidth < 767
-        || document.body.clientWidth < 767){
-        scoreDiv.style.display = 'block'
-        title.style.display = 'block'
-        toggleMode.parentNode.style.display = 'flex'
-        virtualControl.style.display = 'none'
-    }
 
     localStorage.setItem('last-score', score)
     if(+localStorage.getItem('max-score') < score){

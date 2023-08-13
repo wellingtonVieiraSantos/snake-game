@@ -93,14 +93,6 @@ main{
     color: var(--text-dark);
 }
 
-.darkmode .virtual-control-container > div{
-    background-color: var(--bg-color-dark);
-}
-
-.darkmode .virtual-control-container > .arrow{
-    border: 5px solid var(--border-dark);
-}
-
 h1{
     font-size: 3rem;
     text-shadow: 2px 0 0 blue, -2px 0 0 red;
@@ -209,11 +201,6 @@ button:hover{
     background-image: url(../img/right.png);
 }
 
-.virtual-control-container{
-    display: none;
-    
-}
-
 @media only screen and (max-width: 767px) and (orientation: portrait) {
     main{
         max-width: 100vw;
@@ -262,27 +249,5 @@ button:hover{
     }
     .restart{
         margin-top: 2.5rem;
-    }
-
-    .virtual-control-container{
-        width: 12.5rem;
-        height: 12.5rem;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 2px;
-        display: none;
-    }
-    .virtual-control-container > div{
-        background-color: var(--bg-color-light);
-    }
-    
-    .virtual-control-container > .arrow{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 5px solid var(--border-light);
-        border-radius: 50%;
-        cursor: pointer;
     }
 }
