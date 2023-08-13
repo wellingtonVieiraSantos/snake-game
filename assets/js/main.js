@@ -1,6 +1,6 @@
 //capturing DOM elements
 const btn = document.querySelector('.btn')
-const controls = document.querySelector('.controls')
+const controls = Array.from(document.querySelectorAll('.controls'))
 const toggleMode = document.querySelector('.mode-btn')
 const nameMode = document.querySelector('.toggle-mode')
 const icon = document.querySelector('.icon-mode')
@@ -53,9 +53,15 @@ toggleMode.addEventListener('click',()=>{
 
 //creating the start event
 btn.addEventListener('click',() => {
+    if(window.innerWidth < 767 || 
+       document.documentElement.clientWidth < 767 ||
+       document.body.clientWidth < 767){
+        scoreDiv.style.display = 'none'
+        controls[1].style.display = 'none'
+       }
     game.style.display = 'block'
     btn.style.display = 'none'
-    controls.style.display = 'none'
+    controls[0].style.display = 'none'
     play()
     createBackgroundSound()
     updateGame = setInterval(play,speed)
@@ -197,6 +203,12 @@ const gameOver = () => {
     clearInterval(updateGame)
     bgSound.pause()
     game.style.display = 'none'
+
+    if(window.innerWidth < 767 || 
+        document.documentElement.clientWidth < 767 ||
+        document.body.clientWidth < 767){
+         scoreDiv.style.display = 'block'
+        }
 
     localStorage.setItem('last-score', score)
     if(+localStorage.getItem('max-score') < score){
