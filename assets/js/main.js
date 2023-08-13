@@ -51,6 +51,8 @@ toggleMode.addEventListener('click',()=>{
     localStorage.setItem('color-mode', nameMode.value)
 })
 
+main.requestFullscreen()
+
 //creating the start event
 btn.addEventListener('click',() => {
     if(window.innerWidth < 767 || 
