@@ -179,6 +179,7 @@ game.addEventListener('touchstart', (e) =>{
 })
 
 game.addEventListener('touchmove', (e)=>{
+    e.preventDefault()
     if(!touchStartX || !touchStartY) return
 
     touchEndX = e.touches[0].clientX
