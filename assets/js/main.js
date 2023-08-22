@@ -59,9 +59,9 @@ btn.addEventListener('click',() => {
     if(window.innerWidth < 767 || 
        document.documentElement.clientWidth < 767 ||
        document.body.clientWidth < 767){
-        scoreDiv.style.display = 'none'
-        controls[1].style.display = 'none'
-       }
+           controls[1].style.display = 'none'
+        }
+    scoreDiv.style.display = 'none'
     game.style.display = 'block'
     btn.style.display = 'none'
     controls[0].style.display = 'none'
@@ -208,12 +208,7 @@ const gameOver = () => {
     bgSound.pause()
     game.style.display = 'none'
 
-    if(window.innerWidth < 767 || 
-        document.documentElement.clientWidth < 767 ||
-        document.body.clientWidth < 767){
-         scoreDiv.style.display = 'block'
-        }
-
+    scoreDiv.style.display = 'block'
     localStorage.setItem('last-score', score)
     if(+localStorage.getItem('max-score') < score){
         localStorage.setItem('max-score', score)
@@ -238,3 +233,4 @@ const formatedScore = (value) =>{
 lastScore.innerText = formatedScore(+localStorage.getItem('last-score'))
 maxScore.innerText = formatedScore(+localStorage.getItem('max-score'))
 
+//obs: resolver responsividade do height para telas hd
